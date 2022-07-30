@@ -5,6 +5,9 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.CommandLineRunner;
+
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class CardatabaseApplication {
@@ -18,6 +21,14 @@ public class CardatabaseApplication {
 				args
 		);
 		logger.info("Slf4j says hello!");
+	}
+
+	// Preloading demo data
+	@Bean
+	CommandLineRunner runner() {
+		return args -> {
+			// pass
+		};
 	}
 
 }

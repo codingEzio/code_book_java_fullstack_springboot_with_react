@@ -4,6 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.FetchType;
+
+import com.packt.cardatabase.domain.Owner;
 
 @Entity
 public class Car {
@@ -12,6 +17,10 @@ public class Car {
 	private long id;
 	private String brand, model, color, registerNumber;
 	private int dateYear, price;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "owner")
+	private Owner owner;
 
 	// Constructor without arguments
 
@@ -80,4 +89,11 @@ public class Car {
 		this.price = price;
 	}
 
+	public Owner getOwner(Owner owner) {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
 }

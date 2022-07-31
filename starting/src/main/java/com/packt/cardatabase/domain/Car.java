@@ -29,7 +29,7 @@ public class Car {
 	// Constructor with arguments
 
 	public Car (String brand, String model, String color, String registerNumber,
-	            int dateYear, int price) {
+	            int dateYear, int price, Owner owner) {
 		super();
 		this.brand = brand;
 		this.model = model;
@@ -37,6 +37,7 @@ public class Car {
 		this.registerNumber = registerNumber;
 		this.dateYear = dateYear;
 		this.price = price;
+		this.owner = owner;
 	}
 
 	// Getter and Setter (generated using IntelliJ IDEA)

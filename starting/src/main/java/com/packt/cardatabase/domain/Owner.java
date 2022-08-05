@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.packt.cardatabase.domain.Car;
 
 
@@ -20,6 +21,7 @@ public class Owner {
 	private String firstName, lastName;
 
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "owner")
+	@JsonIgnore
 	private List<Car> cars;
 
 	public Owner() { }

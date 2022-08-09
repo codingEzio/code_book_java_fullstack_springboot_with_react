@@ -26,8 +26,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.passwordEncoder(new BCryptPasswordEncoder());
 	}
 
-	@Override
-	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		// pass
-	}
 }

@@ -65,6 +65,22 @@ public class CardatabaseApplication {
 					"GMM-1221", 2020, 14000, owner1));
 			carRepository.save(new Car("BYD", "Prime", "Green",
 					"BYD-0441", 2014, 55000, owner3));
+
+			userRepository.save(new User(
+					"test",
+					"$2a$10$puSktOaZYELsHQESAvQtHexz/JpJuGjqa4fsxlHFxTv3NpxThut/G",
+					"USER"
+			));
+			userRepository.save(new User(
+					"user",
+					"$2a$10$k5Aokk0jsJNwDWW.sYv56.9W6YXhYCOTyDGqeTQHeAECz.l8PnT92",
+					"USER"
+			));
+			userRepository.save(new User(
+					"admin",
+					"$2a$10$gB2/X.J5ELwpg85nkQ/CEe5CSjWWE51VCgQN0CjLilV/9GQZ4bTie",
+					"ADMIN"
+			));
 		};
 	}
 

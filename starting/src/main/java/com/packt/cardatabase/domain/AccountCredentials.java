@@ -1,7 +1,8 @@
 package com.packt.cardatabase.domain;
 
 public class AccountCredentials {
-	// Wasn't going to be saved to the database
+	// A normal POJO (plain old Java object) for authentication to work
+	// This wasn't required to be saved to the database
 
 	private String username;
 	private String password;

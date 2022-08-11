@@ -16,6 +16,8 @@ import com.packt.cardatabase.service.AuthenticationService;
 
 public class AuthenticationFilter extends GenericFilterBean {
 
+	// Get exisiting token or return newly generated tokens
+
 	@Override
 	public void doFilter(
 			ServletRequest servletRequest,

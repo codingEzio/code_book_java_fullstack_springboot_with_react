@@ -27,12 +27,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailServiceImpl userDetailService;
 
+	// The way to authentication which uses the non-in-memory provider
+
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 		authenticationManagerBuilder
 				.userDetailsService(userDetailService)
 				.passwordEncoder(new BCryptPasswordEncoder());
 	}
+
+	// Add filters based on different circumstances
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -51,6 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						new AuthenticationFilter(),
 						UsernamePasswordAuthenticationFilter.class);
 	}
+
+	// Add CORS protection
 
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {

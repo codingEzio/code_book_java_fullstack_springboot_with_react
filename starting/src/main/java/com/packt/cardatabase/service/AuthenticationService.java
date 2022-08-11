@@ -16,6 +16,8 @@ public class AuthenticationService {
 	static final String SIGNING_KEY = "secret-key";
 	static final String PREFIX = "Bearer";
 
+	// For external classes to add JWT token in wish
+
 	static public void addToken(HttpServletResponse httpServletResponse, String username) {
 		String jwtToken = Jwts.builder()
 				.setSubject(username)
@@ -26,6 +28,8 @@ public class AuthenticationService {
 		httpServletResponse.addHeader("Authorization", PREFIX + " " + jwtToken);
 		httpServletResponse.addHeader("Access-Control-Expose-Headers", "Authorization");
 	}
+
+	// Prase exisiting token or return newly generated tokens
 
 	static public Authentication getAuthentication(HttpServletRequest httpServletRequest) {
 		String token = httpServletRequest.getHeader("Authorization");

@@ -27,6 +27,8 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
 		setAuthenticationManager(authenticationManager);
 	}
 
+	// Do the actual authentication
+
 	@Override
 	public Authentication attemptAuthentication(
 			HttpServletRequest httpServletRequest,
@@ -41,6 +43,8 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
 						accountCredentials.getPassword(),
 						Collections.emptyList()));
 	}
+
+	// If successfully authenticated, add the (JWT) token
 
 	@Override
 	protected void successfulAuthentication(

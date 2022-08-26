@@ -13,7 +13,7 @@ import org.springframework.security.core.Authentication;
 
 public class AuthenticationService {
 	static final long EXPIRATION_TIME = 864_000_00;
-	static final String SIGNING_KEY = "secret-key";
+	static final String SIGNING_KEY = "secretkey";
 	static final String PREFIX = "Bearer";
 
 	// For external classes to add JWT token in wish

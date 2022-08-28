@@ -5,9 +5,10 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.CommandLineRunner;
 
 @SpringBootApplication
-public class CardatabaseApplication {
+public class CardatabaseApplication implements CommandLineRunner {
 	private static final Logger logger = LoggerFactory.getLogger(
 			CardatabaseApplication.class
 	);
@@ -18,4 +19,8 @@ public class CardatabaseApplication {
 		logger.info("Application started!");
 	}
 
+	@Override
+	public void run(String... args) throws Exception {
+		// pass
+	}
 }

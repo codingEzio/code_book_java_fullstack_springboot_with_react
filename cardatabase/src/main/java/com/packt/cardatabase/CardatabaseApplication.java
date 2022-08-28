@@ -36,5 +36,17 @@ public class CardatabaseApplication implements CommandLineRunner {
 		carRepository.save(new Car("Eurus", "Eastwind", "Green", "MJK-3214", 41422, 2020));
 		carRepository.save(new Car("Olive", "Anniversary", "White", "ERQ-2411", 15132, 2022));
 		carRepository.save(new Car("Future", "TotalEV", "Black", "JOK-1242", 64235, 2020));
+
+		for (Car car: carRepository.findByColor("White")) {
+			logger.info("White Cars -> " + car.getBrand() + " " + car.getModel());
+		}
+
+		for (Car car: carRepository.findByReleasedAt(2020)) {
+			logger.info("Released at 2020 -> " + car.getBrand() + " " + car.getModel());
+		}
+
+		for (Car car: carRepository.findByColorAndReleasedAt("White", 2020)) {
+			logger.warn("White and 2020 -> " + car.getBrand() + " " + car.getModel());
+		}
 	}
 }

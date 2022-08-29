@@ -1,12 +1,16 @@
 package com.packt.cardatabase.domain;
 
+import java.util.Set;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.CascadeType;
 
 @Entity
@@ -16,8 +20,11 @@ public class Owner {
 	private long ownerid;
 	private String firstname, lastname;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
-	private List<Car> cars;
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name = "relation_midtable_car_owner",
+			joinColumns = {@JoinColumn(name = "ownerid")},
+			inverseJoinColumns = {@JoinColumn(name = "id")})
+	private Set<Car> cars = new HashSet<Car>();
 
 	public Owner() {
 	}
@@ -52,11 +59,11 @@ public class Owner {
 		this.lastname = lastname;
 	}
 
-	public List<Car> getCars() {
+	public Set<Car> getCars() {
 		return cars;
 	}
 
-	public void setCars(List<Car> cars) {
+	public void setCars(Set<Car> cars) {
 		this.cars = cars;
 	}
 }

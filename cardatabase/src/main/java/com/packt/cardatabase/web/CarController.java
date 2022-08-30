@@ -1,6 +1,6 @@
 package com.packt.cardatabase.web;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,7 +13,7 @@ public class CarController {
 	@Autowired
 	private CarRepository carRepository;
 
-	@GetMapping("/cars")
+	@RequestMapping("/cars")
 	public Iterable<Car> getCars() {
 		return carRepository.findAll();
 	}

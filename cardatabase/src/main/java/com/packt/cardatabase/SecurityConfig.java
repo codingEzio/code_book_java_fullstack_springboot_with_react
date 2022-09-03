@@ -1,5 +1,7 @@
 package com.packt.cardatabase;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +19,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import com.packt.cardatabase.service.UserDetailsServiceImpl;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -36,6 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSecurity
 				// Disable CSRF protection
 				.csrf().disable()
+				// Configure CORS (Cross Origin Resource Sharing)
+				.cors().and()
 				// Disable session creation
 				.sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
@@ -63,5 +71,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public AuthenticationManager getAuthenticationManger() throws Exception {
 		return authenticationManager();
+	}
+
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+
+		CorsConfiguration corsConfiguration = new CorsConfiguration();
+		corsConfiguration.setAllowedOrigins(Arrays.asList("*"));
+		corsConfiguration.setAllowedMethods(Arrays.asList("*"));
+		corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
+		corsConfiguration.setAllowCredentials(false);
+		corsConfiguration.applyPermitDefaultValues();
+
+		urlBasedCorsConfigurationSource.registerCorsConfiguration(
+				"/**",
+				corsConfiguration
+		);
+
+		return urlBasedCorsConfigurationSource;
 	}
 }

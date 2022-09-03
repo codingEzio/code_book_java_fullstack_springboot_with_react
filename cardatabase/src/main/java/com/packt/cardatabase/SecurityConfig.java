@@ -39,13 +39,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/login")
 				.permitAll()
-				// Any other requests are allowed by authenticated users
+				// Required to be authenticated for accessing any other requests
 				.anyRequest().authenticated().and()
-				//
-				.addFilterBefore(
-						authenticationFilter,
-						UsernamePasswordAuthenticationFilter.class
-				);
+				// Go find existing JWT token if there is one and make use of it
+				.addFilterBefore(authenticationFilter,
+						UsernamePasswordAuthenticationFilter.class);
 	}
 
 	@Autowired

@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.authentication.AuthenticationManager;
 
 import com.packt.cardatabase.service.UserDetailsServiceImpl;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -26,6 +27,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private AuthenticationFilter authenticationFilter;
+
+	@Autowired
+	private AuthenticationEntryPoint exceptionHandler;
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -41,6 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll()
 				// Required to be authenticated for accessing any other requests
 				.anyRequest().authenticated().and()
+				.exceptionHandling()
+				.authenticationEntryPoint(exceptionHandler).and()
 				// Go find existing JWT token if there is one and make use of it
 				.addFilterBefore(authenticationFilter,
 						UsernamePasswordAuthenticationFilter.class);

@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.authentication.AuthenticationManager;
 
 import com.packt.cardatabase.service.UserDetailsServiceImpl;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -22,6 +23,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserDetailsServiceImpl userDetailsServiceImpl;
+
+	@Autowired
+	private AuthenticationFilter authenticationFilter;
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -36,7 +40,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.POST, "/login")
 				.permitAll()
 				// Any other requests are allowed by authenticated users
-				.anyRequest().authenticated();
+				.anyRequest().authenticated().and()
+				//
+				.addFilterBefore(
+						authenticationFilter,
+						UsernamePasswordAuthenticationFilter.class
+				);
 	}
 
 	@Autowired

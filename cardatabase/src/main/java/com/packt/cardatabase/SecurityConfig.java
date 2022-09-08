@@ -44,20 +44,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.csrf().disable()
 				// Configure CORS (Cross Origin Resource Sharing)
 				.cors().and()
-				// Disable session creation
-				.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				// Allow EVERYONE access the LOGIN via POST
 				.authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/login")
-				.permitAll()
-				// Required to be authenticated for accessing any other requests
-				.anyRequest().authenticated().and()
-				.exceptionHandling()
-				.authenticationEntryPoint(exceptionHandler).and()
-				// Go find existing JWT token if there is one and make use of it
-				.addFilterBefore(authenticationFilter,
-						UsernamePasswordAuthenticationFilter.class);
+				.permitAll();
+
+		// // Disable session creation
+		// .sessionManagement()
+		// .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+		// // Required to be authenticated for accessing any other requests
+		// .anyRequest().authenticated().and()
+		// .exceptionHandling()
+		// .authenticationEntryPoint(exceptionHandler).and()
+		// // Go find existing JWT token if there is one and make use of it
+		// .addFilterBefore(authenticationFilter,
+		// UsernamePasswordAuthenticationFilter.class);
 	}
 
 	@Autowired
@@ -86,8 +87,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		urlBasedCorsConfigurationSource.registerCorsConfiguration(
 				"/**",
-				corsConfiguration
-		);
+				corsConfiguration);
 
 		return urlBasedCorsConfigurationSource;
 	}

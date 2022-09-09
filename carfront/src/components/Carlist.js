@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import Snackbar from '@mui/material/Snackbar';
 
 import { SERVER_URL } from '../constants';
 
 const Carlist = () => {
   const [cars, setCars] = useState([]);
+  const [open, setOpen] = useState(false);
+
   const datagrid_columns = [
     { field: 'brand', headerName: 'Brand', width: 200 },
     { field: 'model', headerName: 'Model', width: 200 },
@@ -37,6 +40,8 @@ const Carlist = () => {
     fetch(url, { method: 'DELETE' })
       .then(response => fetchCars())
       .catch(error => console.error(error));
+
+    setOpen(true);
   };
 
   return (
@@ -46,6 +51,13 @@ const Carlist = () => {
         columns={datagrid_columns}
         getRowId={row => row._links.self.href}
         disableSelectionOnClick={true}
+      />
+
+      <Snackbar
+        open={open}
+        autoHideDuration={2000}
+        onClose={() => setOpen(false)}
+        message="Car deleted"
       />
     </div>
   );

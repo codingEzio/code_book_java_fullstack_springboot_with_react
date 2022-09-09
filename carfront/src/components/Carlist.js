@@ -40,8 +40,12 @@ const Carlist = () => {
     if (window.confirm('Are you sure to delete this?')) {
       fetch(url, { method: 'DELETE' })
         .then(response => {
-          fetchCars();
-          setOpen(true);
+          if (response.ok) {
+            fetchCars();
+            setOpen(true);
+          } else {
+            alert('Something went wrong!');
+          }
         })
         .catch(error => console.error(error));
     }

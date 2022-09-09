@@ -37,11 +37,14 @@ const Carlist = () => {
   };
 
   const onDelClick = url => {
-    fetch(url, { method: 'DELETE' })
-      .then(response => fetchCars())
-      .catch(error => console.error(error));
-
-    setOpen(true);
+    if (window.confirm('Are you sure to delete this?')) {
+      fetch(url, { method: 'DELETE' })
+        .then(response => {
+          fetchCars();
+          setOpen(true);
+        })
+        .catch(error => console.error(error));
+    }
   };
 
   return (

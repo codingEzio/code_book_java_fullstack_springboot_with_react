@@ -45,6 +45,7 @@ const Carlist = () => {
         rows={cars}
         columns={datagrid_columns}
         getRowId={row => row._links.self.href}
+        disableSelectionOnClick={true}
       />
     </div>
   );

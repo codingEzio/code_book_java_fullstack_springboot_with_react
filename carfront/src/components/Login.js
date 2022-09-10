@@ -21,6 +21,27 @@ const Login = () => {
     });
   };
 
+  const login = () => {
+    fetch(SERVER_URL + 'login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(user),
+    })
+      .then(response => {
+        // If we are successfully authenticated, the backend server would
+        // return the generated JWT token in the form of a HTTP header
+        const jwtToken = response.headers.get('Authorization');
+
+        // If we got the token, add it to the session storage
+        if (jwtToken !== null) {
+          sessionStorage.setItem('jwt', jwtToken);
+
+          setAuthentication(true);
+        }
+      })
+      .catch(error => console.error(error));
+  };
+
   if (isAuthenticated) {
     return <Carlist />;
   } else {
@@ -34,7 +55,7 @@ const Login = () => {
             label="Password"
             onChange={handleChange}
           />
-          <Button variant="outlined" color="primary" onClick={}>
+          <Button variant="outlined" color="primary" onClick={login}>
             Login
           </Button>
         </Stack>

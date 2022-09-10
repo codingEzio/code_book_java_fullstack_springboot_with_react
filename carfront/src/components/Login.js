@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
 
 import { SERVER_URL } from '../constants';
 import Carlist from './Carlist';
@@ -13,6 +14,7 @@ const Login = () => {
     password: '',
   });
   const [isAuthenticated, setAuthentication] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleChange = event => {
     setUser({
@@ -37,6 +39,8 @@ const Login = () => {
           sessionStorage.setItem('jwt', jwtToken);
 
           setAuthentication(true);
+        } else {
+          setOpen(true);
         }
       })
       .catch(error => console.error(error));
@@ -59,6 +63,13 @@ const Login = () => {
             Login
           </Button>
         </Stack>
+
+        <Snackbar
+          open={open}
+          autoHideDuration={3000}
+          onClose={() => setOpen(false)}
+          message="Login failed: Check your username and password again!"
+        />
       </div>
     );
   }

@@ -10,7 +10,6 @@ const EditCar = props => {
     brand: '',
     model: '',
     color: '',
-    year: '',
     releasedAt: '',
     price: '',
   });
@@ -47,35 +46,35 @@ const EditCar = props => {
             name="brand"
             value={car.brand}
             onChange={handleChange}
-          />{' '}
+          />
           <br />
           <input
             placeholder="Model"
             name="model"
             value={car.model}
             onChange={handleChange}
-          />{' '}
+          />
           <br />
           <input
             placeholder="Color"
             name="color"
             value={car.color}
             onChange={handleChange}
-          />{' '}
+          />
           <br />
           <input
             placeholder="Released At"
             name="releasedAt"
             value={car.releasedAt}
             onChange={handleChange}
-          />{' '}
+          />
           <br />
           <input
             placeholder="Price"
             name="price"
             value={car.price}
             onChange={handleChange}
-          />{' '}
+          />
           <br />
         </DialogContent>
 

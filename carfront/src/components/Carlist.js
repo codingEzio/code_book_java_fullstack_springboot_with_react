@@ -17,12 +17,12 @@ const Carlist = () => {
     { field: 'releasedAt', headerName: 'Released At', width: 200 },
     { field: 'price', headerName: 'Price', width: 200 },
     {
-      field: '_links.self.href',
-      headerName: '',
+      field: '_links.car.href',
+      headerName: 'Edit',
       sortable: false,
       filterable: false,
       renderCell: row => {
-        <EditCar data={row} />;
+        return <EditCar data={row} />;
       },
     },
     {

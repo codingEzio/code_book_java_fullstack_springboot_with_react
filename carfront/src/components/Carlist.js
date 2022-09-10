@@ -3,6 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import Snackbar from '@mui/material/Snackbar';
 
 import { SERVER_URL } from '../constants';
+import AddCar from './AddCar';
 
 const Carlist = () => {
   const [cars, setCars] = useState([]);
@@ -52,21 +53,25 @@ const Carlist = () => {
   };
 
   return (
-    <div style={{ height: 500, width: '100%' }}>
-      <DataGrid
-        rows={cars}
-        columns={datagrid_columns}
-        getRowId={row => row._links.self.href}
-        disableSelectionOnClick={true}
-      />
+    <React.Fragment>
+      <AddCar />
 
-      <Snackbar
-        open={open}
-        autoHideDuration={2000}
-        onClose={() => setOpen(false)}
-        message="Car deleted"
-      />
-    </div>
+      <div style={{ height: 500, width: '100%' }}>
+        <DataGrid
+          rows={cars}
+          columns={datagrid_columns}
+          getRowId={row => row._links.self.href}
+          disableSelectionOnClick={true}
+        />
+
+        <Snackbar
+          open={open}
+          autoHideDuration={2000}
+          onClose={() => setOpen(false)}
+          message="Car deleted"
+        />
+      </div>
+    </React.Fragment>
   );
 };
 

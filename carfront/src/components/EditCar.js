@@ -62,7 +62,7 @@ const EditCar = props => {
         <DialogContent>
           <Stack spacing={2} mt={1}>
             <TextField
-              autofocus
+              autoFocus
               variant="standard"
               label="Brand"
               name="brand"

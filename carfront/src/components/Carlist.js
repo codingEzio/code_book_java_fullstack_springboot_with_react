@@ -4,6 +4,7 @@ import Snackbar from '@mui/material/Snackbar';
 
 import { SERVER_URL } from '../constants';
 import AddCar from './AddCar';
+import EditCar from './EditCar';
 
 const Carlist = () => {
   const [cars, setCars] = useState([]);
@@ -15,6 +16,15 @@ const Carlist = () => {
     { field: 'color', headerName: 'Color', width: 200 },
     { field: 'releasedAt', headerName: 'Released At', width: 200 },
     { field: 'price', headerName: 'Price', width: 200 },
+    {
+      field: '_links.self.href',
+      headerName: '',
+      sortable: false,
+      filterable: false,
+      renderCell: row => {
+        <EditCar data={row} />;
+      },
+    },
     {
       field: '_links.self.href',
       headerName: '⛔️',

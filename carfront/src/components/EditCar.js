@@ -1,0 +1,91 @@
+import React, { useState } from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+
+const EditCar = props => {
+  const [open, setOpen] = useState(false);
+  const [car, setCar] = useState({
+    brand: '',
+    model: '',
+    color: '',
+    year: '',
+    releasedAt: '',
+    price: '',
+  });
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleChange = event => {
+    setCar({
+      ...car,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSave = () => {
+    // pass
+  };
+
+  return (
+    <div>
+      <button onClick={handleClickOpen}>Edit</button>
+
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Edit car</DialogTitle>
+
+        <DialogContent>
+          <input
+            placeholder="Brand"
+            name="brand"
+            value={car.brand}
+            onChange={handleChange}
+          />{' '}
+          <br />
+          <input
+            placeholder="Model"
+            name="model"
+            value={car.model}
+            onChange={handleChange}
+          />{' '}
+          <br />
+          <input
+            placeholder="Color"
+            name="color"
+            value={car.color}
+            onChange={handleChange}
+          />{' '}
+          <br />
+          <input
+            placeholder="Released At"
+            name="releasedAt"
+            value={car.releasedAt}
+            onChange={handleChange}
+          />{' '}
+          <br />
+          <input
+            placeholder="Price"
+            name="price"
+            value={car.price}
+            onChange={handleChange}
+          />{' '}
+          <br />
+        </DialogContent>
+
+        <DialogActions>
+          <button onClick={handleClose}>Cancel</button>
+          <button onClick={handleClose}>Save</button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
+};
+
+export default EditCar;

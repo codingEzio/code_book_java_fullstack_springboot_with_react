@@ -67,9 +67,11 @@ const Carlist = () => {
   };
 
   const addCar = car => {
+    const jwtToken = sessionStorage.getItem('jwt');
+
     fetch(SERVER_URL + 'api/cars', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', Authorization: jwtToken },
       body: JSON.stringify(car),
     })
       .then(response => {
@@ -83,9 +85,11 @@ const Carlist = () => {
   };
 
   const updateCar = (car, link) => {
+    const jwtToken = sessionStorage.getItem('jwt');
+
     fetch(link, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', Authorization: jwtToken },
       body: JSON.stringify(car),
     })
       .then(response => {
@@ -100,7 +104,9 @@ const Carlist = () => {
 
   const onDelClick = url => {
     if (window.confirm('Are you sure to delete this?')) {
-      fetch(url, { method: 'DELETE' })
+      const jwtToken = sessionStorage.getItem('jwt');
+
+      fetch(url, { method: 'DELETE', headers: { Authorization: jwtToken } })
         .then(response => {
           if (response.ok) {
             fetchCars();

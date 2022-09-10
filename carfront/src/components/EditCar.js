@@ -8,6 +8,9 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+
 const EditCar = props => {
   const [open, setOpen] = useState(false);
   const [car, setCar] = useState({
@@ -57,43 +60,45 @@ const EditCar = props => {
         <DialogTitle>Edit car</DialogTitle>
 
         <DialogContent>
-          <input
-            placeholder="Brand"
-            name="brand"
-            value={car.brand}
-            onChange={handleChange}
-          />
-          <br />
-          <input
-            placeholder="Model"
-            name="model"
-            value={car.model}
-            onChange={handleChange}
-          />
-          <br />
-          <input
-            placeholder="Color"
-            name="color"
-            value={car.color}
-            onChange={handleChange}
-          />
-          <br />
-          <input
-            placeholder="Released At"
-            name="releasedAt"
-            value={car.releasedAt}
-            onChange={handleChange}
-          />
-          <br />
-          <input
-            placeholder="Price"
-            name="price"
-            value={car.price}
-            onChange={handleChange}
-          />
-          <br />
+          <Stack spacing={2} mt={1}>
+            <TextField
+              autofocus
+              variant="standard"
+              label="Brand"
+              name="brand"
+              value={car.brand}
+              onChange={handleChange}
+            />
+            <TextField
+              variant="standard"
+              label="Model"
+              name="model"
+              value={car.model}
+              onChange={handleChange}
+            />
+            <TextField
+              variant="standard"
+              label="Color"
+              name="color"
+              value={car.color}
+              onChange={handleChange}
+            />
+            <TextField
+              variant="standard"
+              label="Released At"
+              name="releasedAt"
+              value={car.releasedAt}
+              onChange={handleChange}
+            />
+            <TextField
+              variant="standard"
+              label="Price"
+              name="price"
+              value={car.price}
+              onChange={handleChange}
+            />
+          </Stack>
         </DialogContent>
-
         <DialogActions>
           <Button variant="contained" onClick={handleClose}>
             Cancel

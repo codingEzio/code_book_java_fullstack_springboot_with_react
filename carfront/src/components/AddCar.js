@@ -4,6 +4,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
+import Button from '@mui/material/Button';
+
 const AddCar = props => {
   const [open, setOpen] = useState(false);
   const [car, setCar] = useState({
@@ -38,7 +40,9 @@ const AddCar = props => {
 
   return (
     <div>
-      <button onClick={handleClickOpen}>New Car</button>
+      <Button variant="contained" onClick={handleClickOpen}>
+        New Car
+      </Button>
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>New car</DialogTitle>
@@ -82,8 +86,12 @@ const AddCar = props => {
         </DialogContent>
 
         <DialogActions>
-          <button onClick={handleClose}>Cancel</button>
-          <button onClick={handleSave}>Save</button>
+          <Button variant="contained" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button variant="contained" onClick={handleSave}>
+            Save
+          </Button>
         </DialogActions>
       </Dialog>
     </div>

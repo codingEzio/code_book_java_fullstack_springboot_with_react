@@ -15,6 +15,14 @@ const EditCar = props => {
   });
 
   const handleClickOpen = () => {
+    setCar({
+      brand: props.data.row.brand,
+      model: props.data.row.model,
+      color: props.data.row.color,
+      releasedAt: props.data.row.releasedAt,
+      price: props.data.row.price,
+    });
+
     setOpen(true);
   };
 
@@ -30,7 +38,9 @@ const EditCar = props => {
   };
 
   const handleSave = () => {
-    // pass
+    props.updateCar(car, props.data.id);
+
+    handleClose();
   };
 
   return (
@@ -80,7 +90,7 @@ const EditCar = props => {
 
         <DialogActions>
           <button onClick={handleClose}>Cancel</button>
-          <button onClick={handleClose}>Save</button>
+          <button onClick={handleSave}>Save</button>
         </DialogActions>
       </Dialog>
     </div>

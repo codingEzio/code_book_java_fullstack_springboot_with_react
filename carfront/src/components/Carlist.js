@@ -22,7 +22,7 @@ const Carlist = () => {
       sortable: false,
       filterable: false,
       renderCell: row => {
-        return <EditCar data={row} />;
+        return <EditCar data={row} updateCar={updateCar} />;
       },
     },
     {
@@ -50,6 +50,22 @@ const Carlist = () => {
   const addCar = car => {
     fetch(SERVER_URL + 'api/cars', {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(car),
+    })
+      .then(response => {
+        if (response.ok) {
+          fetchCars();
+        } else {
+          alert('Something went wrong!');
+        }
+      })
+      .catch(error => console.error(error));
+  };
+
+  const updateCar = (car, link) => {
+    fetch(link, {
+      method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(car),
     })

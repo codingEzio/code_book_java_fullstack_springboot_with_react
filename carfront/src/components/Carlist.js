@@ -8,6 +8,8 @@ import {
 import Snackbar from '@mui/material/Snackbar';
 
 import Stack from '@mui/material/Stack';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import { SERVER_URL } from '../constants';
 import AddCar from './AddCar';
@@ -35,12 +37,16 @@ const Carlist = () => {
     },
     {
       field: '_links.self.href',
-      headerName: '⛔️',
+      headerName: '',
       sortable: false,
       filterable: false,
       disableExport: true,
       renderCell: row => {
-        return <button onClick={() => onDelClick(row.id)}>Delete</button>;
+        return (
+          <IconButton onClick={() => onDelClick(row.id)}>
+            <DeleteIcon color="error" />
+          </IconButton>
+        );
       },
     },
   ];

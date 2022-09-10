@@ -7,6 +7,8 @@ import {
 } from '@mui/x-data-grid';
 import Snackbar from '@mui/material/Snackbar';
 
+import Stack from '@mui/material/Stack';
+
 import { SERVER_URL } from '../constants';
 import AddCar from './AddCar';
 import EditCar from './EditCar';
@@ -111,7 +113,9 @@ const Carlist = () => {
 
   return (
     <React.Fragment>
-      <AddCar addCar={addCar} />
+      <Stack mt={2} mb={2}>
+        <AddCar addCar={addCar} />
+      </Stack>
 
       <div style={{ height: 500, width: '100%' }}>
         <DataGrid

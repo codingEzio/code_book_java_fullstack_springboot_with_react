@@ -30,6 +30,12 @@ const AddCar = props => {
     });
   };
 
+  const handleSave = () => {
+    props.addCar(car);
+
+    handleClose();
+  };
+
   return (
     <div>
       <button onClick={handleClickOpen}>New Car</button>
@@ -77,7 +83,7 @@ const AddCar = props => {
 
         <DialogActions>
           <button onClick={handleClose}>Cancel</button>
-          <button onClick={handleClose}>Save</button>
+          <button onClick={handleSave}>Save</button>
         </DialogActions>
       </Dialog>
     </div>

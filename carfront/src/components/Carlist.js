@@ -37,6 +37,22 @@ const Carlist = () => {
       .then(error => console.error(error));
   };
 
+  const addCar = car => {
+    fetch(SERVER_URL + 'api/cars', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(car),
+    })
+      .then(response => {
+        if (response.ok) {
+          fetchCars();
+        } else {
+          alert('Something went wrong!');
+        }
+      })
+      .catch(error => console.error(error));
+  };
+
   const onDelClick = url => {
     if (window.confirm('Are you sure to delete this?')) {
       fetch(url, { method: 'DELETE' })
@@ -54,7 +70,7 @@ const Carlist = () => {
 
   return (
     <React.Fragment>
-      <AddCar />
+      <AddCar addCar={addCar} />
 
       <div style={{ height: 500, width: '100%' }}>
         <DataGrid
